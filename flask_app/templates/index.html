@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Movie Search</title>
+</head>
+
+<body>
+    <h1>Search for a Movie</h1>
+    <form action="/search_movie" method="POST">
+        <input type="text" name="search_query" placeholder="Enter movie title">
+        <button type="submit">Search</button>
+    </form> 
+    {% for movie in search_results %}
+    <div class="card">
+        <div>
+            <img src="{{ movie.image }}" alt="">
+            <p>{{ movie.ranking }}</p>
+        </div>
+        <div class="back">
+            <div>
+                <div class="title"><a href="/add_movie/{{movie.id}}">{{movie.title}}</a>
+                    <p class="overview">{{movie.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
