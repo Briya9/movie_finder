@@ -18,7 +18,6 @@ def search_movie():
     if request.method == 'POST':
         search_query = request.form['search_query']
         print(request.form)
-        # api_key = 'k_mpoah5sj'
         url = f"https://imdb-api.com/en/API/Searchmovie/{os.environ.get('IMDB_API_KEY')}/{search_query}"
         response = requests.get(url)
 
@@ -36,8 +35,6 @@ def search_movie():
 @app.route("/add_movie/<imdb_id>", methods=["GET"])
 def add_movie(imdb_id):
     if request.method =="GET":
-        # api_key = "k_mpoah5sj"
-        # imdb_id = "tt1375666"
         url = f"https://imdb-api.com/en/API/Title/{os.environ.get('IMDB_API_KEY')}/{imdb_id}"
         print("API URL:", url)
         response = requests.get(url)
