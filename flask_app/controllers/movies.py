@@ -41,7 +41,7 @@ def add_movie(imdb_id):
             title = response.json() 
             print("Response from IMDB API:", title["stars"])
             data ={
-                # I use title(response.json)as a list and put the indexes that i want to have 
+                # I use title(response.json)as a list and put the indexes that i want to g
                 "title" : title["title"],
                 "year" : title["year"],
                 "plot" : title["plot"],
