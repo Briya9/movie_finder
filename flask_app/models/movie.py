@@ -1,6 +1,6 @@
 from flask_app import app
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
+# from flask import flash
 
 
 
@@ -33,3 +33,28 @@ class Movie:
     
 
     
+    @classmethod
+    def get_all_movies(cls): 
+        query = """
+        SELECT * FROM movies ;
+        """
+        results = connectToMySQL(cls.db_name).query_db(query)
+        print(results)
+        movies = []
+        for movie in results:
+            movies.append(cls(movie))
+        return movies
+
+
+
+    @classmethod
+    def delete_movie(cls, movie_id):
+        query="""
+        DELETE FROM movies WHERE id=%(id)s;
+        """
+        data={
+            "id":movie_id
+        }
+        print (query)
+        return connectToMySQL(cls.db_name).query_db(query, data)
+            

@@ -40,7 +40,7 @@ def add_movie(imdb_id):
         if response.status_code == 200:
             title = response.json() 
             print("Response from IMDB API:", title["stars"])
-            data ={
+            data={
                 # I use title(response.json)as a list and put the indexes that i want to g
                 "title" : title["title"],
                 "year" : title["year"],
@@ -51,11 +51,26 @@ def add_movie(imdb_id):
                 "image" : title["image"],
             }
             movie.Movie.add_movies(data)
-            print(data)
+            # print(data)
             return render_template("add.html", title=title)
         else:
             return render_template("add.html")
     return redirect("/")
+
+
+
+@app.route("/all_favorites", methods=["GET", "POST"])
+def all_movies():
+    return render_template("all_movies.html", all_movies = movie.Movie.get_all_movies())
+
+
+
+@app.route("/delete_movie/<imdb_id>", methods=["POST"])
+def delete_movie(imdb_id):
+        movie.Movie.delete_movie(imdb_id)
+        return redirect("/all_favorites")
+
+
 
 
 
