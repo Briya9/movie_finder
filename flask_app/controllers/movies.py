@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, json
+from flask import render_template, request, redirect
 from flask_app import app
 from flask_app.models import movie
 import requests, os
@@ -31,17 +31,17 @@ def search_movie():
     
 
 
-@app.route("/add_movie/<imdb_id>", methods=["GET"])
-def add_movie(imdb_id):
+@app.route("/add_movie/<id>", methods=["GET"])
+def add_movie(id):
     if request.method =="GET":
-        url = f"https://imdb-api.com/en/API/Title/{os.environ.get('IMDB_API_KEY')}/{imdb_id}"
+        url = f"https://imdb-api.com/en/API/Title/{os.environ.get('IMDB_API_KEY')}/{id}"
         print("API URL:", url)
         response = requests.get(url)
         if response.status_code == 200:
             title = response.json() 
-            print("Response from IMDB API:", title["stars"])
+            # print("Response from IMDB API:", title["stars"])
             data={
-                # I use title(response.json)as a list and put the indexes that i want to g
+                # I use title(response.json)as a list and put the indexes that i want to 
                 "title" : title["title"],
                 "year" : title["year"],
                 "plot" : title["plot"],
@@ -49,6 +49,7 @@ def add_movie(imdb_id):
                 "directors" : title["directors"],
                 "awards" : title["awards"],
                 "image" : title["image"],
+                "id" : id
             }
             movie.Movie.add_movies(data)
             # print(data)
@@ -65,9 +66,9 @@ def all_movies():
 
 
 
-@app.route("/delete_movie/<imdb_id>", methods=["POST"])
-def delete_movie(imdb_id):
-        movie.Movie.delete_movie(imdb_id)
+@app.route("/delete_movie/<id>", methods=["POST"])
+def delete_movie(id):
+        movie.Movie.delete_movie(id)
         return redirect("/all_favorites")
 
 
