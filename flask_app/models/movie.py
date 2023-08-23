@@ -8,18 +8,18 @@ from flask import flash
 class Movie:
     db_name = "movie_project_schema"
 
-    def __init__(self, b ):
-        self.imdb_id = b["id"]
-        self.id = b["id"]
-        self.title = b["title"]
-        self.year = b["year"]
-        self.plot = b["plot"]
-        self.stars = b["stars"]
-        self.directors = b["directors"]
-        self.awards = b["awards"]
-        self.image = b["image"]
-        self.created_at = b["created_at"]
-        self.updated_at = b["updated_at"]
+    def __init__(self, data):
+        self.imdb_id = data["id"]
+        self.id = data["id"]
+        self.title = data["title"]
+        self.year = data["year"]
+        self.plot = data["plot"]
+        self.stars = data["stars"]
+        self.directors = data["directors"]
+        self.awards = data["awards"]
+        self.image = data["image"]
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
 
 
     @classmethod
