@@ -7,21 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie</title>
 </head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .card {
+        border: 3px solid black;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 40%;
+    }
+
+
+    .container {
+        padding: 2px 16px;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+</style>
 
 <body>
+    <div class="container">
 
-    {% if title %}
-    <p>Title:{{ title.title }}</p>
-    <p>Year:{{ title.year }}</p>
-    <p>Plot:{{ title.plot }}</p>
-    <p>Stars:{{ title.stars }}</p>
-    <p>Directors:{{ title.directors }}</p>
-    <p>Awards:{{ title.awards }}</p>
-    <img src="{{title.image}}" alt="">
-    <a href="/all_favorites">Add to favorite</a>
-    {% endif %}
+        {% if title %}
+        <div class="card">
+            <img src="{{title.image}}" alt="Avatar" style="width:50%">
+            <p>Title:{{ title.title }}</p>
+            <p>Year:{{ title.year }}</p>
+            <p>Plot:{{ title.plot }}</p>
+            <p>Stars:{{ title.stars }}</p>
+            <p>Directors:{{ title.directors }}</p>
+            <p>Awards:{{ title.awards }}</p>
+
+            <a href="/all_favorites">Add to favorite</a>
+        </div>
+        {% endif %}
 
 
+    </div>
 </body>
 
 </html>
