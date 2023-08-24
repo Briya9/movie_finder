@@ -8,8 +8,13 @@ from flask import flash
 class Movie:
     db_name = "movie_project_schema"
 
+<<<<<<< HEAD
     def __init__(self, data ):
         self.imddata_id = data["id"]
+=======
+    def __init__(self, data):
+        self.imdb_id = data["id"]
+>>>>>>> 0a1933782f3873fa3f57c1542ffc0f58f51703f7
         self.id = data["id"]
         self.title = data["title"]
         self.year = data["year"]
